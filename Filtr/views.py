@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import User
+
 # Create your views here.
 def index(request):
     return render(request, 'Filtr/index.html')
