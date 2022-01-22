@@ -3,3 +3,5 @@ db.sqlite3
 Filtr/migrations
 media
 *.svg
+*.jpg
+*.jpeg
