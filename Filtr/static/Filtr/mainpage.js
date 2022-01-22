@@ -9,12 +9,34 @@ const ctx = canvas.getContext("2d");
 makeBase();
 
 function makeBase(){
-  let img = new Image()
+  let img= new Image()
+  xaxis = canvas.width / 2 - img.width / 2
+  yaxis = canvas.height / 2 - img.height / 2
+  //img.style.width = "100px"
   img.src = "/static/Filtr/example.jpg"
-  ctx.drawImage(base_image, 100, 100)
+  ctx.drawImage(img, 100, 100)
 }
+
+// let img = new Image()
+// let fileName = "";
+
+// var file = document.createElement("img")
+// file.src = "/static/Filtr/example.jpg"
 
 Caman("#canvas", "/static/Filtr/example.jpg", function () {
     // manipulate image here
     this.brightness(0);
 });
+
+document.getElementById("b&w-filter").addEventListener("click", function(){
+  Caman("#canvas", "/static/Filtr/example.jpg", function () {
+    this.vintage().render();
+    this.sinCity.render();
+  })
+})
+
+document.getElementById("test-filter").addEventListener("click", function(){
+  Caman("#canvas", "/static/Filtr/example.jpg", function () {
+    this.revert()
+  })
+})
