@@ -3,29 +3,180 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>Filtr</title>
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        
+
         <!-- CSS Stylesheets -->
-        <link href="{% static 'Filtr/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'Filtr/styles.css' %}" rel="stylesheet" />
 
         <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap"
+            rel="stylesheet"
+        />
 
-        
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+
+        <!-- Compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+
+        <!-- Import custom stylesheet -->
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- Compiled and minified JavaScript -->
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+        ></script>
+
         <!-- CamanJS -->
     </head>
-    <body style="height: 100vh; width: 100vw;">
-        {% block body %}
-        {% endblock %}
+    <body>
+        <nav id="navbar" style="background-color: #242631">
+            <div class="nav-wrapper container">
+                <img src="/static/Filtr/logo.png" style="height: 10px" />
+                <ul class="right image-save">
+                    <!-- <button class="btn btn-flat blue white-text" onclick="saveImage()">
+            Save
+          </button>
+          <button class="btn btn-flat red white-text" onclick="resetImage()">
+            Reset
+          </button> -->
+                    <div class="btn green custom-file" style="width: 200px">
+                        <!-- <span for="upload-file">upload-file</span> -->
+                        <label for="upload-file" class="">Choose Image</label>
+                        <input
+                            type="file"
+                            class="custom-file-input"
+                            id="upload-file"
+                        />
+                    </div>
+                    <button
+                        id="download-btn"
+                        class="btn btn-flat blue white-text"
+                    >
+                        Download Image
+                    </button>
+                    <button
+                        id="revert-btn"
+                        class="btn btn-flat blue white-text"
+                    >
+                        Remove Filters
+                    </button>
+                </ul>
+            </div>
+        </nav>
+        <ul
+            id="sidenav"
+            class="sidenav sidenav-fixed"
+            style="background-color: #242631"
+        >
+            <!-- <div class="row" style="height: 89vh">
+            <div class="col-s m-0 p-0">
+              <ul class="list-group">
+                
+              </ul>
+            </div> -->
+            <ul
+                id="options"
+                class="sidenav sidenav-fixed"
+                style="background-color: #242631"
+            >
+                <li>H1</li>
+                <li>H2</li>
+            </ul>
+            <ul
+                id="filters"
+                class="sidenav sidenav-fixed"
+                style="background-color: #242631; display: none"
+            >
+                <li
+                    class="list-group-item g-5"
+                    style="background-color: #242631"
+                >
+                    <img
+                        class="filter-preview filter-btn vintage-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn lomo-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn clarity-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn sincity-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li
+                    class="list-group-item g-5"
+                    style="background-color: #242631"
+                >
+                    <img
+                        class="filter-preview filter-btn crossprocess-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn pinhole-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn nostalgia-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+                <li class="list-group-item" style="background-color: #242631">
+                    <img
+                        class="filter-preview filter-btn hermajesty-add"
+                        src="/static/Filtr/b&w.jpg"
+                    />
+                </li>
+            </ul>
+        </ul>
+        <div class="content">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <!-- Load the script for the editor -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
         <script src="{% static 'Filtr/mainpage.js' %}"></script>
     </body>
+    <!-- <script src="{% static 'frontend/App.js' %}"></script> -->
 </html>
