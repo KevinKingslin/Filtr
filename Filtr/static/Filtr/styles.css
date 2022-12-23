@@ -1,8 +1,51 @@
-/* #canvas {
-    width: 80vw;
-    height: 92vh;
-} */
+body {
+    height: 100vh;
+}
 
-.menu-preview {
+#navbar {
+    height: 60px;
+}
+
+.content {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #1c1c27;
+    height: calc(100% - 60px);
+    margin-left: 20%;
+    width: 80%;
+}
+
+#sidenav {
+    margin-top: 60px;
+    width: 20%;
+    height: calc(100% - 60px);
+    max-width: 20%;
+}
+
+#options {
+    width: 15%;
+    height: 100%;
+}
+
+#filters {
+    margin-left: 15%;
+    width: 85%;
+    height: 100%;
+}
+
+.filter-preview {
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#canvas {
+    display: none;
+    margin: auto;
+    background: #ececec;
+    width: 80%;
+}
+
+.btn-disabled {
+    color: #fff !important;
 }
