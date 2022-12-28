@@ -8,6 +8,94 @@ const downloadBtn = document.getElementById("download-btn");
 const uploadFile = document.getElementById("upload-file");
 const revertBtn = document.getElementById("revert-btn");
 
+const vintage = document.getElementById("vintage");
+const lomo = document.getElementById("lomo");
+const clarity = document.getElementById("clarity");
+const sinCity = document.getElementById("sinCity");
+const sunrise = document.getElementById("sunrise");
+const crossProcess = document.getElementById("crossProcess");
+const orangePeel = document.getElementById("orangePeel");
+const love = document.getElementById("love");
+const grungy = document.getElementById("grungy");
+const jarques = document.getElementById("jarques");
+const pinhole = document.getElementById("pinhole");
+const oldBoot = document.getElementById("oldBoot");
+const greyscale = document.getElementById("greyscale");
+
+filterList = [
+    vintage,
+    lomo,
+    clarity,
+    sinCity,
+    sunrise,
+    crossProcess,
+    orangePeel,
+    love,
+    grungy,
+    jarques,
+    pinhole,
+    oldBoot,
+    greyscale,
+];
+
+function applyFilter(canvas, filter) {
+    Caman(canvas, function () {
+        eval("this." + filter + "().render()");
+    });
+}
+
+vintage.addEventListener("click", function () {
+    applyFilter("#canvas", "vintage");
+});
+
+lomo.addEventListener("click", (e) => {
+    applyFilter("#canvas", "lomo");
+});
+
+clarity.addEventListener("click", (e) => {
+    applyFilter("#canvas", "clarity");
+});
+
+sinCity.addEventListener("click", (e) => {
+    applyFilter("#canvas", "sinCity");
+});
+
+sunrise.addEventListener("click", (e) => {
+    applyFilter("#canvas", "sunrise");
+});
+
+crossProcess.addEventListener("click", (e) => {
+    applyFilter("#canvas", "crossProcess");
+});
+
+orangePeel.addEventListener("click", (e) => {
+    applyFilter("#canvas", "orangePeel");
+});
+
+love.addEventListener("click", (e) => {
+    applyFilter("#canvas", "love");
+});
+
+grungy.addEventListener("click", (e) => {
+    applyFilter("#canvas", "grungy");
+});
+
+jarques.addEventListener("click", (e) => {
+    applyFilter("#canvas", "jarques");
+});
+
+pinhole.addEventListener("click", (e) => {
+    applyFilter("#canvas", "pinhole");
+});
+
+oldBoot.addEventListener("click", (e) => {
+    applyFilter("#canvas", "oldBoot");
+});
+
+greyscale.addEventListener("click", (e) => {
+    applyFilter("#canvas", "greyscale");
+});
+
 // Filter & Effect Handlers
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("filter-btn")) {
@@ -43,38 +131,6 @@ document.addEventListener("click", (e) => {
             Caman("#canvas", img, function () {
                 this.vibrance(-5).render();
             });
-        } else if (e.target.classList.contains("vintage-add")) {
-            Caman("#canvas", img, function () {
-                this.vintage().render();
-            });
-        } else if (e.target.classList.contains("lomo-add")) {
-            Caman("#canvas", img, function () {
-                this.lomo().render();
-            });
-        } else if (e.target.classList.contains("clarity-add")) {
-            Caman("#canvas", img, function () {
-                this.clarity().render();
-            });
-        } else if (e.target.classList.contains("sincity-add")) {
-            Caman("#canvas", img, function () {
-                this.sinCity().render();
-            });
-        } else if (e.target.classList.contains("crossprocess-add")) {
-            Caman("#canvas", img, function () {
-                this.crossProcess().render();
-            });
-        } else if (e.target.classList.contains("pinhole-add")) {
-            Caman("#canvas", img, function () {
-                this.pinhole().render();
-            });
-        } else if (e.target.classList.contains("nostalgia-add")) {
-            Caman("#canvas", img, function () {
-                this.nostalgia().render();
-            });
-        } else if (e.target.classList.contains("hermajesty-add")) {
-            Caman("#canvas", img, function () {
-                this.herMajesty().render();
-            });
         }
     }
 });
@@ -109,6 +165,17 @@ uploadFile.addEventListener("change", () => {
                 ctx.drawImage(img, 0, 0, img.width, img.height);
                 canvas.removeAttribute("data-caman-id");
                 document.getElementById("filters").style.display = "block";
+
+                for (let i = 0; i < filterList.length; ++i) {
+                    filterList[i].width = img.width;
+                    filterList[i].height = img.height;
+                    filterList[i]
+                        .getContext("2d")
+                        .drawImage(img, 0, 0, img.width, img.height);
+                    filterList[i].removeAttribute("data-caman-id");
+
+                    applyFilter("#" + filterList[i].id, filterList[i].id);
+                }
             };
         },
         false
@@ -139,3 +206,13 @@ function download(canvas, filename) {
     e = new MouseEvent("click");
     link.dispatchEvent(e);
 }
+
+Caman.Filter.register("greyscale", function () {
+    this.process("greyscale", function (rgba) {
+        var lumin = 0.2126 * rgba.r + 0.7152 * rgba.g + 0.0722 * rgba.b;
+        rgba.r = lumin;
+        rgba.g = lumin;
+        rgba.b = lumin;
+    });
+    return this;
+});

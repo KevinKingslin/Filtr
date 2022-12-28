@@ -13,7 +13,9 @@ from .models import User
 
 
 def index(request):
-    return render(request, 'Filtr/index.html')
+    filterList = ["lomo", "clarity", "sinCity", "sunrise", "crossProcess",
+                  "orangePeel", "love", "grungy", "jarques", "pinhole", "oldBoot", "greyscale"]
+    return render(request, 'Filtr/index.html', {"filterList": filterList})
 
 
 def login_view(request):

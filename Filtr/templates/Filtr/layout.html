@@ -32,7 +32,6 @@
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap"
             rel="stylesheet"
         />
-
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -44,21 +43,17 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         />
 
-        <!-- Import custom stylesheet -->
-        <link rel="stylesheet" href="style.css" />
-
         <!-- Compiled and minified JavaScript -->
         <script
             defer
             src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
         ></script>
 
-        <!-- CamanJS -->
     </head>
     <body>
         <nav id="navbar" style="background-color: #242631">
-            <div class="nav-wrapper container">
-                <img src="/static/Filtr/logo.png" style="height: 10px" />
+            <div class="nav-wrapper">
+                <img src="/static/Filtr/logo.png" style="height: 50px" />
                 <ul class="right image-save">
                     <!-- <button class="btn btn-flat blue white-text" onclick="saveImage()">
             Save
@@ -106,8 +101,20 @@
                 class="sidenav sidenav-fixed"
                 style="background-color: #242631"
             >
-                <li>H1</li>
-                <li>H2</li>
+                <li>
+                    <img
+                        src="/static/svg/sliders-solid.svg"
+                        style="height: 20px"
+                    />
+                </li>
+                <hr style="background-color: red; margin: 0" />
+                <li>
+                    <img
+                        src="/static/svg/sliders-solid.svg"
+                        style="height: 20px"
+                    />
+                </li>
+                <hr style="background-color: red; margin: 0" />
             </ul>
             <ul
                 id="filters"
@@ -118,56 +125,20 @@
                     class="list-group-item g-5"
                     style="background-color: #242631"
                 >
-                    <img
+                    <canvas
+                        id="vintage"
                         class="filter-preview filter-btn vintage-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
+                    ></canvas>
                 </li>
+
+                {% for i in filterList %}
                 <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn lomo-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
+                    <canvas
+                        id="{{ i }}"
+                        class="filter-preview filter-btn vintage-add"
+                    ></canvas>
                 </li>
-                <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn clarity-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
-                <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn sincity-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
-                <li
-                    class="list-group-item g-5"
-                    style="background-color: #242631"
-                >
-                    <img
-                        class="filter-preview filter-btn crossprocess-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
-                <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn pinhole-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
-                <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn nostalgia-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
-                <li class="list-group-item" style="background-color: #242631">
-                    <img
-                        class="filter-preview filter-btn hermajesty-add"
-                        src="/static/Filtr/b&w.jpg"
-                    />
-                </li>
+                {% endfor %}
             </ul>
         </ul>
         <div class="content">
