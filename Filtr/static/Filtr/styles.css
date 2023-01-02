@@ -6,7 +6,7 @@ body {
     height: 60px;
 }
 
-.content {
+#content {
     padding-top: 5%;
     padding-bottom: 5%;
     background-color: #1c1c27;
@@ -22,12 +22,19 @@ body {
     max-width: 20%;
 }
 
+#slide-out {
+    margin-top: 60px;
+    width: 20%;
+    height: calc(100% - 60px);
+    max-width: 20%;
+}
 #options {
     width: 15%;
     height: 100%;
 }
 
-#filters {
+#filters,
+#tuning {
     margin-left: 15%;
     width: 85%;
     height: 100%;
@@ -37,6 +44,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 #canvas {
@@ -48,4 +56,59 @@ body {
 
 .btn-disabled {
     color: #fff !important;
+}
+
+.material-symbols-outlined {
+    margin: 0;
+    margin-left: 10px;
+    color: white;
+    font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+}
+
+#logo {
+    height: 50px;
+    margin-left: 50px;
+}
+
+@media (max-width: 1550px) {
+    #canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    #content {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+}
+
+@media (max-width: 992px) {
+    #slide-out {
+        min-width: 60% !important;
+        width: 60% !important;
+    }
+    
+    #content {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        background-color: #1c1c27;
+        height: calc(100% - 60px);
+        margin-left: 0;
+        width: 100%;
+    }
+
+    
+    #options {
+        width: 20%;
+        margin-left: 15%;
+    }
+
+    #filters, #tuning {
+        margin-left: 95%;
+    }
+    
 }

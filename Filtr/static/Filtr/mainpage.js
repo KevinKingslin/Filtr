@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+    var elems = document.querySelectorAll(".sidenav");
+    var instances = M.Sidenav.init(elems, options);
+});
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -21,6 +26,16 @@ const jarques = document.getElementById("jarques");
 const pinhole = document.getElementById("pinhole");
 const oldBoot = document.getElementById("oldBoot");
 const greyscale = document.getElementById("greyscale");
+
+const toggleFilters = document.getElementById("toggle-filters");
+const toggleTuning = document.getElementById("toggle-tuning");
+
+toggleFilters.addEventListener("click", () => {
+    toggle("filters");
+});
+toggleTuning.addEventListener("click", () => {
+    toggle("tuning");
+});
 
 filterList = [
     vintage,
@@ -216,3 +231,17 @@ Caman.Filter.register("greyscale", function () {
     });
     return this;
 });
+
+function toggle(option) {
+    const filters = document.getElementById("filters");
+    const tuning = document.getElementById("tuning");
+    if (option == "tuning") {
+        console.log("SDFG");
+        tuning.style.display = "block";
+        filters.style.display = "none";
+    } else {
+        console.log("QWERTY");
+        tuning.style.display = "none";
+        filters.style.display = "block";
+    }
+}

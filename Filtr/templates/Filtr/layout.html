@@ -7,14 +7,14 @@
         <title>Filtr</title>
 
         <!-- Bootstrap -->
-        <link
+        <!-- <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous"
-        />
+        /> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 
         <!-- CSS Stylesheets -->
         <link href="{% static 'Filtr/styles.css' %}" rel="stylesheet" />
@@ -34,6 +34,10 @@
         />
         <link
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link
+            rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
 
@@ -44,16 +48,79 @@
         />
 
         <!-- Compiled and minified JavaScript -->
-        <script
-            defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
-        ></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </head>
     <body>
+        <ul
+            id="slide-out"
+            class="sidenav sidenav-fixed"
+            style="background-color: #242631"
+        >
+            <!-- <div class="row" style="height: 89vh">
+            <div class="col-s m-0 p-0">
+              <ul class="list-group">
+                
+              </ul>
+            </div> -->
+            <ul
+                id="options"
+                class="sidenav sidenav-fixed"
+                style="background-color: #242631"
+            >
+                <li id="toggle-filters">
+                    <span class="material-symbols-outlined">
+                        temp_preferences_custom
+                    </span>
+                </li>
+                <hr style="background-color: red; margin: 0" />
+                <li id="toggle-tuning">
+                    <span class="material-symbols-outlined"> tune </span>
+                </li>
+                <hr style="background-color: red; margin: 0" />
+            </ul>
+            <ul
+                id="filters"
+                class="sidenav sidenav-fixed"
+                style="background-color: #242631; display: none"
+            >
+                <li
+                    class="list-group-item g-5"
+                    style="background-color: #242631"
+                >
+                    <canvas
+                        id="vintage"
+                        class="filter-preview filter-btn vintage-add"
+                    ></canvas>
+                </li>
+
+                {% for i in filterList %}
+                <li class="list-group-item" style="background-color: #242631">
+                    <canvas
+                        id="{{ i }}"
+                        class="filter-preview filter-btn vintage-add"
+                    ></canvas>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <ul
+                id="tuning"
+                class="sidenav sidenav-fixed"
+                style="background-color: #242631; display: none"
+            >
+                <li class="list-group-item" style="background-color: #242631">
+                    <p class="range-field">
+                        <input type="range" id="test5" min="0" max="100" />
+                    </p>
+                </li>
+            </ul>
+        </ul>
         <nav id="navbar" style="background-color: #242631">
             <div class="nav-wrapper">
-                <img src="/static/Filtr/logo.png" style="height: 50px" />
+                <a href="#" data-target="slide-out" class="sidenav-trigger"
+                    ><i class="material-icons">menu</i></a
+                >
+                <img id="logo" src="/static/Filtr/logo.png" />
                 <ul class="right image-save">
                     <!-- <button class="btn btn-flat blue white-text" onclick="saveImage()">
             Save
@@ -85,63 +152,7 @@
                 </ul>
             </div>
         </nav>
-        <ul
-            id="sidenav"
-            class="sidenav sidenav-fixed"
-            style="background-color: #242631"
-        >
-            <!-- <div class="row" style="height: 89vh">
-            <div class="col-s m-0 p-0">
-              <ul class="list-group">
-                
-              </ul>
-            </div> -->
-            <ul
-                id="options"
-                class="sidenav sidenav-fixed"
-                style="background-color: #242631"
-            >
-                <li>
-                    <img
-                        src="/static/svg/sliders-solid.svg"
-                        style="height: 20px"
-                    />
-                </li>
-                <hr style="background-color: red; margin: 0" />
-                <li>
-                    <img
-                        src="/static/svg/sliders-solid.svg"
-                        style="height: 20px"
-                    />
-                </li>
-                <hr style="background-color: red; margin: 0" />
-            </ul>
-            <ul
-                id="filters"
-                class="sidenav sidenav-fixed"
-                style="background-color: #242631; display: none"
-            >
-                <li
-                    class="list-group-item g-5"
-                    style="background-color: #242631"
-                >
-                    <canvas
-                        id="vintage"
-                        class="filter-preview filter-btn vintage-add"
-                    ></canvas>
-                </li>
-
-                {% for i in filterList %}
-                <li class="list-group-item" style="background-color: #242631">
-                    <canvas
-                        id="{{ i }}"
-                        class="filter-preview filter-btn vintage-add"
-                    ></canvas>
-                </li>
-                {% endfor %}
-            </ul>
-        </ul>
-        <div class="content">
+        <div id="content">
             <canvas id="canvas"></canvas>
         </div>
 
