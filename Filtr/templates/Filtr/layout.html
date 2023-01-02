@@ -56,64 +56,29 @@
             class="sidenav sidenav-fixed"
             style="background-color: #242631"
         >
-            <!-- <div class="row" style="height: 89vh">
-            <div class="col-s m-0 p-0">
-              <ul class="list-group">
-                
-              </ul>
-            </div> -->
-            <ul
+            <li
                 id="options"
-                class="sidenav sidenav-fixed"
+                class="list-group-item g-5"
                 style="background-color: #242631"
             >
-                <li id="toggle-filters">
-                    <span class="material-symbols-outlined">
-                        temp_preferences_custom
-                    </span>
-                </li>
-                <hr style="background-color: red; margin: 0" />
-                <li id="toggle-tuning">
-                    <span class="material-symbols-outlined"> tune </span>
-                </li>
-                <hr style="background-color: red; margin: 0" />
-            </ul>
-            <ul
-                id="filters"
-                class="sidenav sidenav-fixed"
-                style="background-color: #242631; display: none"
-            >
-                <li
-                    class="list-group-item g-5"
-                    style="background-color: #242631"
-                >
-                    <canvas
-                        id="vintage"
-                        class="filter-preview filter-btn vintage-add"
-                    ></canvas>
-                </li>
+                <canvas
+                    id="vintage"
+                    class="filter-preview filter-btn vintage-add"
+                ></canvas>
+            </li>
 
-                {% for i in filterList %}
-                <li class="list-group-item" style="background-color: #242631">
-                    <canvas
-                        id="{{ i }}"
-                        class="filter-preview filter-btn vintage-add"
-                    ></canvas>
-                </li>
-                {% endfor %}
-            </ul>
-
-            <ul
-                id="tuning"
-                class="sidenav sidenav-fixed"
-                style="background-color: #242631; display: none"
+            {% for i in filterList %}
+            <li
+                id="options"
+                class="list-group-item"
+                style="background-color: #242631"
             >
-                <li class="list-group-item" style="background-color: #242631">
-                    <p class="range-field">
-                        <input type="range" id="test5" min="0" max="100" />
-                    </p>
-                </li>
-            </ul>
+                <canvas
+                    id="{{ i }}"
+                    class="filter-preview filter-btn vintage-add"
+                ></canvas>
+            </li>
+            {% endfor %}
         </ul>
         <nav id="navbar" style="background-color: #242631">
             <div class="nav-wrapper">
@@ -121,40 +86,61 @@
                     ><i class="material-icons">menu</i></a
                 >
                 <img id="logo" src="/static/Filtr/logo.png" />
-                <ul class="right image-save">
-                    <!-- <button class="btn btn-flat blue white-text" onclick="saveImage()">
-            Save
-          </button>
-          <button class="btn btn-flat red white-text" onclick="resetImage()">
-            Reset
-          </button> -->
-                    <div class="btn green custom-file" style="width: 200px">
-                        <!-- <span for="upload-file">upload-file</span> -->
-                        <label for="upload-file" class="">Choose Image</label>
+                {% if user.is_authenticated %}
+                <ul id="login-wrapper" class="right">
+                    <div class="btn navbar-option">
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
+                </ul>
+
+                
+                {% else %}
+                <ul id="login-wrapper" class="right">
+                    <div class="btn navbar-option">
+                        <a href="{% url 'login' %}">Login</a>
+                    </div>
+                    <div class="btn navbar-option">
+                        <a href="{% url 'register' %}">Register</a>
+                    </div>
+                </ul>
+                {% endif %}
+
+                <ul id="navbar-option-wrapper" class="right">
+                    <div class="btn navbar-option">
+                        <label
+                            for="upload-file"
+                            style="width: 100%; height: 100%"
+                        >
+                            <span class="material-symbols-outlined icons">
+                                upload_file
+                            </span>
+                        </label>
                         <input
                             type="file"
-                            class="custom-file-input"
                             id="upload-file"
+                            style="display: none"
                         />
                     </div>
                     <button
                         id="download-btn"
-                        class="btn btn-flat blue white-text"
+                        class="btn btn-flat white-text navbar-option"
                     >
-                        Download Image
+                        <span class="material-symbols-outlined icons">
+                            download
+                        </span>
                     </button>
                     <button
                         id="revert-btn"
-                        class="btn btn-flat blue white-text"
+                        class="btn btn-flat white-text navbar-option"
                     >
-                        Remove Filters
+                        <span class="material-symbols-outlined icons">
+                            reset_image
+                        </span>
                     </button>
                 </ul>
             </div>
         </nav>
-        <div id="content">
-            <canvas id="canvas"></canvas>
-        </div>
+        <div id="content">{% block body %} {% endblock %}</div>
 
         <!-- Load the script for the editor -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>

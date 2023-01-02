@@ -29,8 +29,8 @@ body {
     max-width: 20%;
 }
 #options {
-    width: 15%;
-    height: 100%;
+    margin: auto;
+    width: 85%;
 }
 
 #filters,
@@ -70,6 +70,60 @@ body {
     margin-left: 50px;
 }
 
+.icons {
+    margin: auto;
+    margin-top: 21%;
+}
+
+#navbar-option-wrapper {
+    margin-right: 35%;
+}
+
+.navbar-option {
+    background-color: #50515a !important;
+    border-radius: 5px;
+}
+
+#login-form, #image-helper {
+    width: 90%;
+    margin: auto;
+    height: 100%;
+    display:table;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway";
+  }
+  
+  .card-title {
+    font-weight: bolder;
+  }
+  
+  .background-image {
+    background:url("https://static.pexels.com/photos/30732/pexels-photo-30732.jpg");
+    background-position: center;
+    background-size: cover;
+    display: block;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1;
+    height: 100%;
+  }
+  
+  .title h3 {
+    margin: 0;
+    padding: 40px 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .card {
+    top: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
 @media (max-width: 1550px) {
     #canvas {
         width: 100%;
@@ -101,14 +155,11 @@ body {
         width: 100%;
     }
 
-    
-    #options {
-        width: 20%;
-        margin-left: 15%;
-    }
-
     #filters, #tuning {
         margin-left: 95%;
     }
     
+    #canvas {
+        margin-top: 30%;
+    }
 }
