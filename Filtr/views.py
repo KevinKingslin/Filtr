@@ -13,9 +13,12 @@ from .models import User
 
 
 def index(request):
-    filterList = ["lomo", "clarity", "sinCity", "sunrise", "crossProcess",
-                  "orangePeel", "love", "grungy", "jarques", "pinhole", "oldBoot", "greyscale"]
-    return render(request, 'Filtr/index.html', {"filterList": filterList})
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/login')
+    else:
+        filterList = ["lomo", "clarity", "sinCity", "sunrise", "crossProcess",
+                    "orangePeel", "love", "grungy", "jarques", "pinhole", "oldBoot", "greyscale"]
+        return render(request, 'Filtr/index.html', {"filterList": filterList})
 
 
 def login_view(request):
