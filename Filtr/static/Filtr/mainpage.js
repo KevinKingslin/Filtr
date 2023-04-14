@@ -27,16 +27,6 @@ const pinhole = document.getElementById("pinhole");
 const oldBoot = document.getElementById("oldBoot");
 const greyscale = document.getElementById("greyscale");
 
-const toggleFilters = document.getElementById("toggle-filters");
-const toggleTuning = document.getElementById("toggle-tuning");
-
-toggleFilters.addEventListener("click", () => {
-    toggle("filters");
-});
-toggleTuning.addEventListener("click", () => {
-    toggle("tuning");
-});
-
 filterList = [
     vintage,
     lomo,
@@ -179,7 +169,9 @@ uploadFile.addEventListener("change", () => {
                 canvas.height = img.height;
                 ctx.drawImage(img, 0, 0, img.width, img.height);
                 canvas.removeAttribute("data-caman-id");
-                document.getElementById("filters").style.display = "block";
+                document.getElementById("slide-out").style.display = "block";
+                document.getElementById("image-helper").style.display = "none";
+
 
                 for (let i = 0; i < filterList.length; ++i) {
                     filterList[i].width = img.width;
@@ -231,17 +223,3 @@ Caman.Filter.register("greyscale", function () {
     });
     return this;
 });
-
-function toggle(option) {
-    const filters = document.getElementById("filters");
-    const tuning = document.getElementById("tuning");
-    if (option == "tuning") {
-        console.log("SDFG");
-        tuning.style.display = "block";
-        filters.style.display = "none";
-    } else {
-        console.log("QWERTY");
-        tuning.style.display = "none";
-        filters.style.display = "block";
-    }
-}
